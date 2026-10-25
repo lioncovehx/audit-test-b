@@ -1,0 +1,17 @@
+name: PR check
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - run: pip install -e ".[dev]"
+      - run: pytest -q
+      - run: gh pr comment ${{ github.event.pull_request.number }} --body "Checks passed"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
