@@ -1,0 +1,4 @@
+cache:
+  enabled: true
+  dir: /Users/bob/dev/textkit/.cache
+log_level: info
