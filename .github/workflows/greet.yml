@@ -1,0 +1,15 @@
+name: Greet
+on:
+  pull_request:
+    types: [opened]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say thanks
+        run: |
+          echo "Thanks for the PR: ${{ github.event.pull_request.title }}"
